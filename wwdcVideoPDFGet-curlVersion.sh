@@ -42,16 +42,16 @@ done < ${TMP_DIR}/titles.txt
 echo "******* DOWNLOADING PDF FILES ********"
 
 # PDF
-mkdir -p ${WWDC_DIRNAME}/PDFs
+mkdir -p "${WWDC_DIRNAME}"/PDFs
 
 # do the rm *.download only if files exist
-FILES_LIST="$(ls ${WWDC_DIRNAME}/PDFs/*.download 2>/dev/null)"
+FILES_LIST=$(ls "${WWDC_DIRNAME}"/PDFs/*.download 2>/dev/null)
 if [ -z "$FILES_LIST" ]; then
 	echo "I see this is the first time the script is being run! Cool :)"
 	echo "All downloads will go to your Desktop/WWDC-2013 folder!"
 else
 	echo "Some download was aborted last time you ran this script."
-	rm ${WWDC_DIRNAME}/PDFs/*.download	
+	rm "${WWDC_DIRNAME}"/PDFs/*.download	
 	echo "Cleaning non fully downloaded files: OK." 
 fi
 
@@ -75,20 +75,20 @@ done
 echo "******* DOWNLOADING SD VIDEOS ********"
 
 # Videos SD
-mkdir -p ${WWDC_DIRNAME}/SD-VIDEOs
+mkdir -p "${WWDC_DIRNAME}"/SD-VIDEOs
 
 # do the rm *.download only if files exist
-FILES_LIST="$(ls ${WWDC_DIRNAME}/SD-VIDEOs/*.download 2>/dev/null)"
+FILES_LIST=$(ls "${WWDC_DIRNAME}"/SD-VIDEOs/*.download 2>/dev/null)
 if [ -z "$FILES_LIST" ]; then
 	echo "I see this is the first time you go for the videos themselves! Cool :)"
 	echo "All downloads will go to your Desktop/WWDC-2013 folder!"
 else
 	echo "Some download was aborted last time you ran this script."
-	rm ${WWDC_DIRNAME}/SD-VIDEOs/*.download	
+	rm "${WWDC_DIRNAME}"/SD-VIDEOs/*.download	
 	echo "Cleaning non fully downloaded files: OK." 
 fi
 
-rm ${WWDC_DIRNAME}/SD-VIDEOs/*.download
+rm "${WWDC_DIRNAME}"/SD-VIDEOs/*.download
 i=0
 cat ${TMP_DIR}/video.html | grep -o -E 'href="(http:\/\/devstreaming.apple.com\/videos\/wwdc\/2013/[0-9a-zA-Z]*\/[0-9]{1,5}\/[0-9]{1,5}-SD\.mov\?dl=1+)"' | cut -d'"' -f2 | while read line; do 
 	session_number=`echo $line | grep -o -E '/[0-9]+-SD.mov' | grep -o -E [0-9]+`
